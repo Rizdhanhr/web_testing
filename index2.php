@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Halaman Index saya baru</h1>
+    <h1>Halaman Index 2</h1>
 </body>
 </html>
