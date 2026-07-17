@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Halaman Index saya baru dilindungi</h1>
+    <h1>Contact Us</h1>
 </body>
 </html>
