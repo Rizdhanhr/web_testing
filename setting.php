@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Halaman Setting Terbaru</h1>
+    <h1>Halaman Setting Terbaru Testing</h1>
 </body>
 </html>
