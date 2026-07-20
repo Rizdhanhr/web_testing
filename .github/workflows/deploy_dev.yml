@@ -1,0 +1,33 @@
+name: Deploy to Dev
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install & Connect OpenVPN
+        run: |
+          sudo apt-get update && sudo apt-get install -y openvpn
+          echo "${{ secrets.OVPN_CONFIG }}" > client.ovpn
+          sudo openvpn --config client.ovpn --daemon --log vpn.log
+          for i in {1..15}; do
+            if ip addr show tun0 > /dev/null 2>&1; then break; fi
+            sleep 2
+          done
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.SSH_DEPLOY_PATH }}
+            git pull origin dev
