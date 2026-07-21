@@ -1,0 +1,45 @@
+name: Deploy To Dev Server
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install and Connect OpenVPN
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openvpn openvpn-systemd-resolved
+          # OpenVPN Authentication
+          echo "${{ secrets.OVPN_CONFIG }}" > client.ovpn
+          # Run OpenVPN
+          sudo openvpn --config client.ovpn --log openvpn.log &
+          # Waiting 20 Seconds For OpenVPN
+          echo "Waiting For Connection..."
+          for i in {1..10}; do
+            if ip link show | grep -E "tun|tap" > /dev/null; then
+               echo "Connection Success"
+               sleep 3
+               break
+            fi
+            sleep 2
+          done
+          # Protection If OpenVPN Connection Failed
+          if ! ip link show | grep -E "tun|tap" > /dev/null; then
+             echo "Connection Failed, Please Refresh"
+             cat openvpn.log
+             exit 1
+          fi
+      # 2. Deploy via SSH (Otomatis bisa tembus karena sudah di dalam VPN)
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.SSH_DEPLOY_PATH }}
+            git fetch origin dev
+            git reset --hard origin/dev
+           
