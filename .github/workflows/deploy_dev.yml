@@ -4,7 +4,8 @@ on:
     branches: [dev]
   workflow_dispatch:
 jobs:
-  deploy:
+  server_dev_deployment:
+    name: Dev Server Deployment
     runs-on: ubuntu-latest
     steps:
       - name: Install and Connect OpenVPN
