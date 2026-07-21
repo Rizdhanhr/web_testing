@@ -7,10 +7,31 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Install OpenVPN
+      - name: Install and Connect OpenVPN
         run: |
           sudo apt-get update
           sudo apt-get install -y openvpn openvpn-systemd-resolved
+          # Buat 1 file utama dari GitHub Secret
+          echo "${{ secrets.OVPN_CONFIG }}" > client.ovpn
+          # Jalankan OpenVPN di background
+          sudo openvpn --config client.ovpn --log openvpn.log &
+          # Menunggu maksimal 20 detik sampai jalur VPN (tun0) siap
+          echo "Menunggu koneksi VPN terbentuk..."
+          for i in {1..10}; do
+            if ip link show | grep -E "tun|tap" > /dev/null; then
+               echo "VPN Sukses Terkoneksi ke alidev.more.id!"
+               sleep 3
+               break
+            fi
+            sleep 2
+          done
+          # Proteksi pembatas jika VPN gagal terhubung
+          if ! ip link show | grep -E "tun|tap" > /dev/null; then
+             echo "Koneksi VPN Gagal! Cek log di bawah ini:"
+             cat openvpn.log
+             exit 1
+          fi
+      # 2. Deploy via SSH (Otomatis bisa tembus karena sudah di dalam VPN)
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         with:
