@@ -16,10 +16,10 @@ jobs:
           # Jalankan OpenVPN di background
           sudo openvpn --config client.ovpn --log openvpn.log &
           # Menunggu maksimal 20 detik sampai jalur VPN (tun0) siap
-          echo "Menunggu koneksi VPN terbentuk..."
+          echo "Waiting For Connection..."
           for i in {1..10}; do
             if ip link show | grep -E "tun|tap" > /dev/null; then
-               echo "VPN Sukses Terkoneksi ke alidev.more.id!"
+               echo "Connection Success"
                sleep 3
                break
             fi
@@ -27,7 +27,7 @@ jobs:
           done
           # Proteksi pembatas jika VPN gagal terhubung
           if ! ip link show | grep -E "tun|tap" > /dev/null; then
-             echo "Koneksi VPN Gagal! Cek log di bawah ini:"
+             echo "Connection Failed, Please Refresh"
              cat openvpn.log
              exit 1
           fi
