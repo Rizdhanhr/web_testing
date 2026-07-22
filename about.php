@@ -81,5 +81,5 @@ ob_start();
 $content = ob_get_clean();
 
 // 4. Render ke dalam master layout
-include __DIR__ . '/layouts/app.php';
+include_once __DIR__ . '/layouts/app.php';
 ?>
