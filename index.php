@@ -203,5 +203,5 @@ console.log("Selamat datang di " + tutorial.platform);</code></pre>
 $content = ob_get_clean();
 
 // 4. Panggil berkas master layout (Sama seperti @extends)
-include __DIR__ . '/layouts/app.php';
+include_once __DIR__ . '/layouts/app.php';
 ?>
