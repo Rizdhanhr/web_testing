@@ -1,4 +1,5 @@
 <?php
+
 // 1. Tentukan judul halaman (Sama seperti @section('title', '...'))
 $title = "Home - Belajar Programming Dasar";
 
