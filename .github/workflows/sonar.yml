@@ -1,0 +1,19 @@
+name: Code Quality Assurance (SonarCloud)
+on:
+  pull_request:
+    branches: [dev]
+    types: [opened, synchronize, reopened]
+jobs:
+  sonar_scan:
+    name: SonarQube Cloud Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: SonarQube Cloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
