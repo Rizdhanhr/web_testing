@@ -12,7 +12,7 @@ ob_start();
     <div class="container py-5">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <span class="badge text-bg-success mb-3 px-3 py-2 rounded-pill fw-semibold">Edisi Pemula Gratis</span>
+                <span class="badge text-bg-success mb-3 px-3 py-2 rounded-pill fw-semibold">Edisi Pemula Gratissss</span>
                 <h1 class="display-4 fw-bold text-white mb-3">Tulis Kode Pertamamu Hari Ini!</h1>
                 <p class="lead text-body-secondary mb-4">Portal belajar pemrograman web yang menyajikan materi secara ringkas, fokus ke dasar, langsung bisa dipraktikkan tanpa teori berbelit-belit.</p>
                 <div class="d-flex gap-3 flex-wrap">
