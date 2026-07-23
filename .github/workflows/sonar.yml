@@ -1,7 +1,7 @@
 name: Code Quality Assurance (SonarCloud)
 on:
   pull_request:
-    branches: [main]
+    branches: [main, dev]
     types: [opened, synchronize, reopened]
 jobs:
   sonar_scan:
