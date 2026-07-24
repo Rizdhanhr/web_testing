@@ -1,6 +1,6 @@
 <?php
 
-$password = '113asdasddsa';
-$db_password = "1234567";
+$abc = '113asdasddsa';
+$p = "1234567";
 
-?>
+
