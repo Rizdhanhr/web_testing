@@ -1,6 +1,6 @@
 <?php
 // 1. Tentukan judul halaman spesifik untuk About
-$title = "About Us - Belajar Programming Dasar";
+$title = "About Us - Belajar Programming Dasarrrrr";
 
 // 2. Mulai menangkap konten halaman
 ob_start();
@@ -11,7 +11,7 @@ ob_start();
     <div class="container py-5 text-center">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <span class="badge text-bg-success mb-3 px-3 py-2 rounded-pill fw-semibold">Kenali Kami Lebih Dekat</span>
+                <span class="badge text-bg-success mb-3 px-3 py-2 rounded-pill fw-semibold">Kenali Kami Lebih Dekatt</span>
                 <h1 class="display-4 fw-bold text-white mb-3">Di Balik Layar DevTutorials</h1>
                 <p class="lead text-body-secondary mb-0">Kami adalah sekelompok praktisi yang percaya bahwa belajar pemrograman tidak harus terasa seperti membaca dokumen hukum: kaku, membosankan, dan penuh istilah asing.</p>
             </div>
