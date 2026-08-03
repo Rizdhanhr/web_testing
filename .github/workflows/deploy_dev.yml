@@ -43,4 +43,3 @@ jobs:
             cd ${{ secrets.SSH_DEPLOY_PATH }}
             git fetch origin dev
             git reset --hard origin/dev
-           
